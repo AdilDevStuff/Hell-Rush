@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Hell Rush Sound 2.mp3-3be1b24b162c4940aaeb7e61eb888a9e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Hell Rush Sound 2.mp3"
+dest_files=[ "res://.import/Hell Rush Sound 2.mp3-3be1b24b162c4940aaeb7e61eb888a9e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Textures/BG.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Level Select Menu.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Textures/UI/Select Level.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Textures/Level 2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/Level 0.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/Level 1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/Level 3.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Textures/UI/Buttons/Pressed/Menu Pressed.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Textures/UI/Buttons/Normal/Menu.png" type="Texture" id=9]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 32.5173, 30.6573, 1098.17, 608.411 )
+
+[node name="Level Select Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -492, -170 )
+script = ExtResource( 2 )
+
+[node name="BG" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Level" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -452.5
+margin_top = -40.0
+margin_right = 452.5
+margin_bottom = 126.0
+
+[node name="Level 0" type="TextureButton" parent="Level"]
+margin_right = 224.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 5 )
+
+[node name="Level 1" type="TextureButton" parent="Level"]
+margin_left = 228.0
+margin_right = 451.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 6 )
+
+[node name="Level 2" type="TextureButton" parent="Level"]
+margin_left = 455.0
+margin_right = 678.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 4 )
+
+[node name="Level 3" type="TextureButton" parent="Level"]
+margin_left = 682.0
+margin_right = 905.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 7 )
+
+[node name="Menu" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -103.5
+margin_top = -100.0
+margin_right = 103.5
+margin_bottom = -48.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 8 )
+
+[node name="Select Level" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -193.5
+margin_top = -292.0
+margin_right = 193.5
+margin_bottom = -91.0
+texture = ExtResource( 3 )
+
+[connection signal="pressed" from="Level/Level 0" to="." method="_on_Level_0_pressed"]
+[connection signal="pressed" from="Level/Level 1" to="." method="_on_Level_1_pressed"]
+[connection signal="pressed" from="Level/Level 2" to="." method="_on_Level_2_pressed"]
+[connection signal="pressed" from="Level/Level 3" to="." method="_on_Level_3_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]

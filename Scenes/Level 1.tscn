@@ -1,0 +1,1026 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Assets/Textures/Black Texture.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Textures/UI/Buttons/Pressed/Menu Pressed.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Textures/UI/Paused.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/UI/Buttons/Pressed/Resume Pressed.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/Red.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/texture_01.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/GameManager.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Textures/UI/Buttons/Normal/Menu.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Textures/UI/Buttons/Normal/Resume.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/PauseUI.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Level Finish.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Textures/BG.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/LaserH.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Laser.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/LaserBeam.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Crosshair/Crosshair dot.png" type="Texture" id=17]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 0.1, 0.1, 0.1 )
+uv1_triplanar = true
+
+[sub_resource type="PrismMesh" id=15]
+left_to_right = 1.0
+
+[sub_resource type="SpatialMaterial" id=16]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 6 )
+uv1_scale = Vector3( 0.1, 0.1, 0.1 )
+uv1_triplanar = true
+
+[sub_resource type="SpatialMaterial" id=17]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 7 )
+emission_enabled = true
+emission = Color( 0.223529, 1, 0.0156863, 1 )
+emission_energy = 3.0
+emission_operator = 0
+emission_on_uv2 = false
+uv1_scale = Vector3( 0.1, 0.1, 0.1 )
+uv1_triplanar = true
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 7, 6, 7 )
+
+[sub_resource type="StyleBoxTexture" id=19]
+texture = ExtResource( 13 )
+region_rect = Rect2( 32.5173, 30.6573, 1098.17, 608.411 )
+
+[node name="Level 1" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 43, 0 )
+
+[node name="Platforms" type="CSGCombiner" parent="."]
+material_override = SubResource( 1 )
+use_collision = true
+
+[node name="Platform" type="CSGBox" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 0 )
+width = 32.0
+depth = 32.0
+
+[node name="Platform2" type="CSGBox" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 40 )
+width = 14.0
+depth = 48.0
+
+[node name="Platform3" type="CSGBox" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 279 )
+width = 14.0
+depth = 48.0
+
+[node name="Platform6" type="CSGBox" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 444 )
+width = 14.0
+depth = 48.0
+
+[node name="Platform7" type="CSGBox" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 489 )
+width = 30.0
+height = 12.0
+depth = 42.0
+
+[node name="Platform8" type="CSGBox" parent="Platforms"]
+transform = Transform( 2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 12, 13, 608 )
+width = 16.0
+height = 8.0
+depth = 24.0
+
+[node name="Platform9" type="CSGBox" parent="Platforms"]
+transform = Transform( 5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 90, 13, 678 )
+width = 30.0
+height = 3.0
+depth = 30.0
+
+[node name="Platform10" type="CSGBox" parent="Platforms"]
+transform = Transform( 5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 90, 13, 638 )
+width = 50.0
+height = 3.0
+depth = 18.0
+
+[node name="Platform4" type="CSGBox" parent="Platforms"]
+transform = Transform( 0.72, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 213 )
+width = 20.0
+height = 20.0
+depth = 4.0
+
+[node name="Platform5" type="CSGBox" parent="Platforms"]
+transform = Transform( 0.7, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 106 )
+width = 20.0
+height = 20.0
+depth = 4.0
+
+[node name="Ramps" type="CSGCombiner" parent="."]
+material_override = SubResource( 1 )
+use_collision = true
+
+[node name="Ramp" type="CSGMesh" parent="Ramps"]
+transform = Transform( -1.14044e-06, 0, -7, 0, 10, 0, 20, 0, -3.25841e-06, 0, 50, 84 )
+mesh = SubResource( 15 )
+
+[node name="Ramp2" type="CSGMesh" parent="Ramps"]
+transform = Transform( -8.58591e-08, 0, 7.2, 0, 10, 0, -20, 0, 2.38419e-06, 0, 50, 235 )
+mesh = SubResource( 15 )
+
+[node name="Ramp3" type="CSGMesh" parent="Ramps"]
+transform = Transform( -2.53131e-06, 0, 7, 0, 10, 0, -20, 0, 6.3573e-07, 0, 30, 323 )
+mesh = SubResource( 15 )
+
+[node name="Walls" type="CSGCombiner" parent="."]
+material_override = SubResource( 16 )
+use_collision = true
+
+[node name="Wall" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 67, 131 )
+height = 20.0
+depth = 36.0
+
+[node name="Wall6" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 28, 538 )
+height = 20.0
+depth = 36.0
+
+[node name="Wall10" type="CSGBox" parent="Walls"]
+transform = Transform( 0.965926, -0.25, -0.0669873, 0.258819, 0.933013, 0.25, 0, -0.258819, 0.965926, -14, 17, 457 )
+height = 14.0
+depth = 12.0
+
+[node name="Wall7" type="CSGBox" parent="Walls"]
+transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -6, 28, 573 )
+height = 20.0
+depth = 36.0
+
+[node name="Wall8" type="CSGBox" parent="Walls"]
+transform = Transform( -0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 82.0507, 28, 602.615 )
+height = 20.0
+depth = 36.0
+
+[node name="Wall9" type="CSGBox" parent="Walls"]
+transform = Transform( 5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 46.9493, 28, 598.385 )
+height = 20.0
+depth = 36.0
+
+[node name="Wall2" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 67, 155 )
+height = 20.0
+depth = 36.0
+
+[node name="Wall3" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 67, 183 )
+height = 20.0
+depth = 36.0
+
+[node name="Wall4" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -8, 20.0585, 368.466 )
+height = 20.0
+depth = 36.0
+
+[node name="Wall5" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 9, 20.9415, 387.534 )
+height = 20.0
+depth = 36.0
+
+[node name="Level Finish" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 20, 678 )
+material_override = SubResource( 17 )
+width = 14.0
+height = 12.0
+depth = 14.0
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LvlFinish1" type="Area" parent="Level Finish"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level Finish/LvlFinish1"]
+shape = SubResource( 18 )
+
+[node name="GameManager" parent="." instance=ExtResource( 8 )]
+
+[node name="Lighting" type="Spatial" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Lighting"]
+transform = Transform( 0.965926, -0.12941, -0.224144, 0.258819, 0.482963, 0.836516, 0, -0.866025, 0.5, 0, 38, 0 )
+shadow_enabled = true
+
+[node name="MovingLasers" type="Spatial" parent="."]
+
+[node name="LaserH" parent="MovingLasers" instance=ExtResource( 14 )]
+transform = Transform( -2.96709e-08, -0.678791, 0, 0.965926, -4.2222e-08, 0.258819, -0.258819, 1.13133e-08, 0.965926, 4.69459, 64.899, 92.9007 )
+
+[node name="LaserH2" parent="MovingLasers" instance=ExtResource( 14 )]
+transform = Transform( -2.96709e-08, -0.678791, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.85986, 48.899, 263.901 )
+
+[node name="LaserH3" parent="MovingLasers" instance=ExtResource( 14 )]
+transform = Transform( -6.46232e-08, -1.47841, 0, 1, -4.37114e-08, 0, 0, 0, 1, 10.4302, 28.899, 477.31 )
+
+[node name="LaserV" parent="MovingLasers" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 39.1475, 299 )
+
+[node name="LaserV2" parent="MovingLasers" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7.62162, 436 )
+
+[node name="LaserH4" parent="MovingLasers" instance=ExtResource( 14 )]
+transform = Transform( -6.46232e-08, -1.47841, 0, 1, -4.37114e-08, 0, 0, 0, 1, 10.4302, 28.899, 503.31 )
+
+[node name="LaserV3" parent="MovingLasers" instance=ExtResource( 15 )]
+transform = Transform( 1.69767, 0, 0, 0, 1, 0, 0, 0, 1, 3, 18.006, 489.466 )
+
+[node name="Platform Side Lasers" type="Spatial" parent="."]
+
+[node name="SideBeam" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 23 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam2" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 40 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam2" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam2" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam3" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 57 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam3" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam3" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam7" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41, 81 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam7" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam7" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam8" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41, 98 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam8" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam8" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam10" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41, 220 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam10" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam10" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam11" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41, 237 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam11" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam11" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam12" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 263 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam12" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam12" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam16" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam16" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam16" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam17" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, 296 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam17" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam17" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam25" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 428.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam25" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam25" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam26" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 445.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam26" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam26" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam34" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6816, 15.4705, 605.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam34" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -10.6162, 0, 9.53674e-07 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam34" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 5.57306, 0, 9.53674e-07 )
+
+[node name="SideBeam36" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.6816, 12.4705, 622.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam36" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -11.8851, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam36" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 6.57306, 0, 0 )
+
+[node name="SideBeam37" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.6816, 12.4705, 638.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam37" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -11.8851, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam37" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 6.57306, 0, 0 )
+
+[node name="SideBeam38" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.6816, 12.4705, 654.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam38" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -11.8851, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam38" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 6.57306, 0, 0 )
+
+[node name="SideBeam39" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.6816, 12.4705, 670.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam39" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -17.8851, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam39" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam40" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.6816, 12.4705, 685.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam40" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -17.8851, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam40" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam41" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 97.6816, 12.9006, 680.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam41" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam43" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 90.1992, 13.5315, 624.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam43" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam44" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36.7362, 14.8726, 608.09 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam44" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam45" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36.7362, 10.8726, 608.09 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam45" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam46" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.6866, 14.8726, 608.09 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam46" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam48" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6.68665, 16.8726, 522.655 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam48" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam49" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 7.31335, 16.8726, 522.655 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam49" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam57" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6.68665, 16.8726, 480.509 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam57" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam58" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 7.31335, 16.8726, 480.509 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam58" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam59" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6.68665, 12.8726, 480.509 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam59" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam60" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 7.31335, 12.8726, 480.509 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam60" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam61" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -0.157154, 7.87259, 432.434 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam61" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam62" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -0.0853972, 58.6701, 223.434 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam62" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam63" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -0.0853972, 54.6701, 223.434 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam63" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam64" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -0.0853972, 49.6701, 223.434 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam64" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam65" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -0.0853972, 44.6701, 223.434 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam65" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam66" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -0.0853972, 40.6701, 223.434 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam66" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam50" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6.68665, 8.87259, 522.655 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam50" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam51" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 7.31335, 8.87259, 522.655 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam51" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam52" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6.68665, 12.8726, 522.655 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam52" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam53" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 7.31335, 12.8726, 522.655 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam53" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam47" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.6866, 10.8726, 608.09 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam47" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam42" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 82.6816, 12.9006, 680.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam42" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 12.5731, 0, 0 )
+
+[node name="SideBeam35" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6816, 10.4705, 605.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam35" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -10.6162, 0, 9.53674e-07 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam35" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 5.57306, 0, 9.53674e-07 )
+
+[node name="SideBeam27" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 461.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam27" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam27" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam28" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 475.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam28" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam28" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam29" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 475.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam29" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam29" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam30" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 489.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam30" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam30" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam31" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 489.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam31" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam31" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam32" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 503.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam32" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam32" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam33" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 503.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam33" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam33" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam54" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 475.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam54" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam54" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam55" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 489.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam55" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam55" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam56" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 503.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam56" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -15.1388, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam56" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 15.0883, 0, 0 )
+
+[node name="SideBeam23" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 311 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam23" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam23" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam24" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 327 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam24" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam24" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam13" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.90091, -0.434005, 0, 0.434005, 0.90091, 0, 56.4606, 218.421 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam13" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam13" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam14" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.90091, -0.434005, 0, 0.434005, 0.90091, 0, 50.3845, 231.033 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam14" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam14" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam15" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.90091, -0.434005, 0, 0.434005, 0.90091, 0, 44.3084, 243.646 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam15" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam15" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam18" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.90091, -0.434005, 0, 0.434005, 0.90091, 0, 35.4249, 309.023 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam18" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam18" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam19" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.90091, -0.434005, 0, 0.434005, 0.90091, 0, 29.3488, 321.636 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam19" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam19" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam20" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.90091, -0.434005, 0, 0.434005, 0.90091, 0, 23.2727, 334.248 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam20" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam20" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam9" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 50, 107 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam9" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam9" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam21" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 50, 213 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam21" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam21" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam22" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 29, 304 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam22" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam22" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam4" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.885288, 0.465043, 0, -0.465043, 0.885288, 0, 44, 75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam4" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam4" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam5" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.885288, 0.465043, 0, -0.465043, 0.885288, 0, 50.5286, 87.6734 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam5" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam5" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="SideBeam6" type="Spatial" parent="Platform Side Lasers"]
+transform = Transform( 1, 0, 0, 0, 0.885288, 0.465043, 0, -0.465043, 0.885288, 0, 57, 100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LaserBeam" parent="Platform Side Lasers/SideBeam6" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -7.13879, 0, 0 )
+
+[node name="LaserBeam2" parent="Platform Side Lasers/SideBeam6" instance=ExtResource( 16 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 7.08828, 0, 0 )
+
+[node name="InGameUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="InGameUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.5
+margin_top = -32.5
+margin_right = 32.5
+margin_bottom = 32.5
+texture = ExtResource( 17 )
+
+[node name="PauseUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 11 )
+
+[node name="BG" type="Panel" parent="PauseUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 19 )
+
+[node name="Paused Title" type="TextureRect" parent="PauseUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -286.0
+margin_top = -220.0
+margin_right = 286.0
+margin_bottom = -14.0
+texture = ExtResource( 4 )
+
+[node name="Resume Btn" type="TextureButton" parent="PauseUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -103.5
+margin_top = 46.0
+margin_right = 103.5
+margin_bottom = 98.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+
+[node name="Menu Btn" type="TextureButton" parent="PauseUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -103.5
+margin_top = 138.0
+margin_right = 103.5
+margin_bottom = 190.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+
+[connection signal="body_entered" from="Level Finish/LvlFinish1" to="Level Finish" method="_on_LvlFinish1_body_entered"]
+[connection signal="pressed" from="PauseUI/Resume Btn" to="PauseUI" method="_on_Resume_Btn_pressed"]
+[connection signal="pressed" from="PauseUI/Menu Btn" to="PauseUI" method="_on_Exit_Btn_pressed"]

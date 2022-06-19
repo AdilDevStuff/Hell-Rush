@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Laser.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 1, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 10.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="Animation" id=5]
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -10, 7, 0 ), Vector3( 6.49289, 7, 0 ), Vector3( -10.5071, 7, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:layers")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Vertical"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 7.3, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 6, 0.162902, 0.314548 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.964706, 1, 0, 1 )
+
+[node name="LaserV" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.24173, 0 )
+script = ExtResource( 1 )
+
+[node name="LaserBeam" type="CSGBox" parent="."]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -10, 7, 0 )
+width = 12.2091
+height = 0.417806
+depth = 0.535726
+material = SubResource( 9 )
+
+[node name="LaserAnim" type="AnimationPlayer" parent="LaserBeam"]
+autoplay = "RESET"
+anims/RESET = SubResource( 5 )
+anims/Vertical = SubResource( 4 )
+
+[node name="LaserArea_V" type="Area" parent="LaserBeam"]
+
+[node name="CollisionShape" type="CollisionShape" parent="LaserBeam/LaserArea_V"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0274961 )
+shape = SubResource( 8 )
+
+[node name="Stand" type="CSGBox" parent="."]
+transform = Transform( -2.18557e-08, -1.5, 0, 0.5, -6.55671e-08, 0, 0, 0, 0.5, -1.88221, 0.34372, 0 )
+width = 1.96454
+height = 12.0
+depth = 1.88298
+material = SubResource( 10 )
+
+[node name="Stand2" type="CSGBox" parent="."]
+transform = Transform( -2.18557e-08, -1.5, 0, 0.5, -6.55671e-08, 0, 0, 0, 0.5, -1.88221, 13.3437, 0 )
+width = 1.96454
+height = 12.0
+depth = 1.88298
+material = SubResource( 10 )
+
+[connection signal="body_entered" from="LaserBeam/LaserArea_V" to="." method="_on_LaserArea_V_body_entered"]

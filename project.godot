@@ -8,16 +8,12 @@
 
 config_version=4
 
-_global_script_classes=[  ]
-_global_script_class_icons={
-}
-
 [application]
 
 config/name="Hell Rush"
 run/main_scene="res://Scenes/Main Menu.tscn"
 config/icon="res://Assets/Logos/Hell Rush Png Icon.png"
-config/windows_native_icon="res://Assets/Logos/Hell-Rush-Png-Icon.ico"
+config/windows_native_icon="res://Assets/Logos/Hell Rush.ico"
 
 [audio]
 
